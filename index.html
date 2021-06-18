@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&family=Poppins:wght@300&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css">
+	<title>Films</title>
+</head>
+
+<body onload="getMovies(API_URL_POPULAR)">
+
+	<header>
+		<div class="logo-block">
+			<img src="img/lion-logopng-33392.png" alt="lion_logo" id="logo_lion">
+			<h2>Lion's film</h2>
+		</div>
+
+		<form action="" name='form' method="GET">
+			<div class="search">
+				<input type="text" name="search" id="search" placeholder="Поиск">
+				<i class="fa fa-search"></i>
+			</div>
+		</form>
+
+	</header>
+
+	<div class="films">
+	</div>
+	</div>
+
+	<div class="modal_block" id="modal_block">
+		<div class="modal_body">
+
+			<div class="modal_frame">
+				<a href="" class="modal_frame_close" id="modal_frame_close"></a>
+
+				<div class="info">
+
+					<div class="poster" id="poster">
+					</div>
+
+					<div class="table" id="table">
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="pagination" id="pagination">
+		<button class="previous" id="previous">
+			&#8592;previous</button>
+		<div class="numbers" id="numbers">
+			<button class="one">1</button>
+			<button class="two">2</button>
+			<button class="three">3</button>
+			<button class="four">4</button>
+			<button class="five">5</button>
+		</div>
+		<button class="next" id="next">next
+			&#10230;</button>
+	</div>
+
+	<script src="main.js"></script>
+</body>
+
+</html>
