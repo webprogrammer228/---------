@@ -238,6 +238,6 @@ input::placeholder:focus {
 	transition: .3s linear;
 }
 
-.one.active, .two.active, .three.active, .four.active, .five.active, .previous.active, .next.active {
+#pagination .active {
 	background: #743d06;
 }

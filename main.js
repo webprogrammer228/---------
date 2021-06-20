@@ -129,61 +129,60 @@ form.addEventListener('submit', (event) => {
 const previous = document.getElementById('previous');
 const next = document.getElementById('next');
 
-// пагинация по цифрам [1-5]
-
+const pagination = document.getElementById('pagination');
 const numbers = document.getElementById('numbers');
 
-numbers.addEventListener('click', function(event) {
-	let target = event.target;
+pagination.addEventListener('click', function(event) {
+
+	const target = event.target;
 	if (target.tagName != 'BUTTON') return;
+	let page = +document.querySelector('.active').textContent;
 
-	let page = '';
-	page = +event.target.textContent;
+	let activePage = document.querySelector('.active');
 
-	highlightButtons(target);
-	getMovies(`${API_URL_POPULAR_PAGE}${page}`);
+	if (target.matches('#pagination > .numbers > button')) {
+		activePage.setAttribute('class', '');
+		numbers.children[target.textContent - 1].setAttribute('class', 'active');
+		getMovies(`${API_URL_POPULAR_PAGE}${+target.textContent}`)
+	}
 
-	console.log('Текущая страница = >', page);
-
-	// Пагинация по prev\next.
-	previous.addEventListener('click', function() {
-
-		if (page !== 1) {
-			page--;
-			console.log('Клик по предыдущей странице =>', page);
-			getMovies(`${API_URL_POPULAR_PAGE}${page}`);
+	else if (target.matches('#pagination > button')) {
+		if (target.matches('.previous')) {
+			if (page !== 1) {
+				page--;
+				activePage.setAttribute('class', '');
+				numbers.children[page - 1].setAttribute('class', 'active');
+				getMovies(`${API_URL_POPULAR_PAGE}${page}`);
+			}
+			else if (page == 1) {
+				page = 5;
+				activePage.setAttribute('class', '');
+				numbers.children[page - 1].setAttribute('class', 'active');
+				getMovies(`${API_URL_POPULAR_PAGE}${page}`);
+			}
 		}
-		else if (page == 1) {
-			page = 5;
-			console.log('Клик по предыдущей странице, когда номер страницы 1 =>', page);
-			getMovies(`${API_URL_POPULAR_PAGE}${page}`);
-		}
-	});
 
-	next.addEventListener('click', function() {
-
-		if (page !== 5) {
-			page++;
-			console.log('Клик по некст =>', page);
-			getMovies(`${API_URL_POPULAR_PAGE}${page}`);
+		else if (target.matches('.next')) {
+			if (page !== 5) {
+				activePage.setAttribute('class', '');
+				numbers.children[page].setAttribute('class', 'active');
+				page = +document.querySelector('.active').textContent;
+				getMovies(`${API_URL_POPULAR_PAGE}${page}`);
+			}
+			else {
+				page = 0;
+				activePage.setAttribute('class', '');
+				numbers.children[page].setAttribute('class', 'active');
+				getMovies(`${API_URL_POPULAR_PAGE}${page + 1}`);
+			}
 		}
-		else {
-			page = 1;
-			console.log('клик по некст, если 5 =>', page);
-			getMovies(`${API_URL_POPULAR_PAGE}${page}`);
-		}
-	});
+	}
 });
 
+let firstPage = numbers.children[0];
 
-// подсветка активной кнопки
-let selectItem;
-
-function highlightButtons(button) {
-	if (selectItem) {
-		selectItem.classList.remove('active');
-	}
-	selectItem = button;
-	selectItem.classList.add('active');
+window.onload = function() {
+	getMovies(API_URL_POPULAR);
+	firstPage.classList.add('active');
 }
 

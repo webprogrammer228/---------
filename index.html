@@ -13,7 +13,7 @@
 	<title>Films</title>
 </head>
 
-<body onload="getMovies(API_URL_POPULAR)">
+<body>
 
 	<header>
 		<div class="logo-block">
@@ -21,7 +21,7 @@
 			<h2>Lion's film</h2>
 		</div>
 
-		<form action="" name='form' method="GET">
+		<form action="" name="form" method="GET">
 			<div class="search">
 				<input type="text" name="search" id="search" placeholder="Поиск">
 				<i class="fa fa-search"></i>
@@ -57,17 +57,18 @@
 	</div>
 
 	<div class="pagination" id="pagination">
-		<button class="previous" id="previous">
-			&#8592;previous</button>
+
+		<button class="previous" id="previous">previous</button>
+
 		<div class="numbers" id="numbers">
-			<button class="one">1</button>
-			<button class="two">2</button>
-			<button class="three">3</button>
-			<button class="four">4</button>
-			<button class="five">5</button>
+			<button>1</button>
+			<button>2</button>
+			<button>3</button>
+			<button>4</button>
+			<button>5</button>
 		</div>
-		<button class="next" id="next">next
-			&#10230;</button>
+
+		<button class="next" id="next">next</button>
 	</div>
 
 	<script src="main.js"></script>
